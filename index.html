@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Nazhira Rasyika❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;500&family=Outfit:wght@600&display=swap');
+* 
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+  overflow: hidden;
+  color: white;
+}
+
+/* BACKGROUND */
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url('foto/bg.jpg') center/cover no-repeat;
+  filter: brightness(0.6);
+  z-index: -1;
+}
+#typing {
+  white-space: pre-line;
+  line-height: 1.1;
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5;
+}
+
+/* GENERAL */
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 1.7rem;
+  text-align: center;
+}
+h2 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+p {
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: #ff4d6d;
+  color: white;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+/* POPUP */
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.no-btn {
+  position: relative;
+}
+
+/* TIMELINE */
+.timeline {
+  display: none;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.card {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+/* HIDDEN MESSAGE */
+.hidden {
+  display: none;
+}
+
+.typing {
+  font-size: 1.0rem;
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.8;
+}
+
+#typing-container {
+  height: 70vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+}
+
+.typing {
+  white-space: pre-line;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* LOVE FALL */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+  h1 { font-size: 3.5rem; }
+  p { font-size: 1.5rem; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<!-- MUSIC -->
+
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <h1>Happy Birthday Sayanggg ❤️</h1>
+  <p>Mau lanjut liat sesuatu gaa?</p>
+<div class="button-group">
+  <button class="no-btn" onmouseover="moveBtn(this)">Ngga</button>
+  <button onclick="start()">Mau</button>
+</div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline" id="timeline">
+
+  <div class="card">
+    <img src="foto/foto3.jpg">
+    <p>Ini awal kita kenal, masih canggung tapi seru 😋</p>
+  </div>
+
+  <div class="card">
+    <img src="foto/foto2.jpg">
+    <p>Mulai deket, banyak cerita bareng 💕</p>
+  </div>
+
+  <div class="card">
+    <img src="foto/foto1.jpg">
+    <p>Dan sekarang... kamu jadi bagian penting hidup aku ❤️</p>
+  </div>
+
+  <button onclick="showChoice()">Lanjut?</button>
+</div>
+
+<!-- PILIHAN -->
+<div class="container hidden" id="choice">
+  <h2>Mau lanjut ke pesan rahasia?</h2>
+  <div class="button-group">
+  <button class="no-btn" onmouseover="moveBtn(this)">Ngga</button>
+  <button onclick="showMessage()">Mau</button>
+</div>
+</div>
+
+<!-- HIDDEN MESSAGE -->
+<div class="container hidden" id="message">
+  <div id="typing-container">
+    <div class="typing" id="typing"></div>
+  </div>
+</div>
+
+<script>
+function start() {
+  document.getElementById("popup").style.display = "none";
+  document.getElementById("timeline").style.display = "flex";
+}
+
+function moveBtn(btn) {
+  btn.style.position = "absolute";
+  btn.style.top = Math.random()*80 + "%";
+  btn.style.left = Math.random()*80 + "%";
+}
+
+function showChoice() {
+  document.getElementById("timeline").style.display = "none";
+  document.getElementById("choice").style.display = "flex";
+}
+
+function showMessage() {
+  document.getElementById("choice").style.display = "none";
+  document.getElementById("message").style.display = "flex";
+  typingEffect();
+  createHearts();
+}
+
+/* typing message */
+
+const text = `Selamat ulang tahun yaa sayangkuuu cantikkkuuu cintakuuu maniezzkuuu duniakuuu semestakuuu ❤️
+
+aku bener bener ngga nyangka bisa kenal kamu dan bahkan jadi pacar kamu, kehadiran kamu di dunia ini bener bener berarti buat aku jugaa orang banyakk, hidup aku sangat sangat terasa seru dan berwarna karena ada kamu di dalamnya.
+
+semogaa di umur yang sekarang kamu bisaa terus jadii manusia yang baik hati, yang cantikkk bangett tiap detikk😋 dan semoga makin banyak hal hal baik yang datangg ke kamuu yaa sayangg.
+
+aku bener bener seneng dan bersyukur karena kamu selalu adaa dan selalu mengusahakan apapun buat kita, panjang umur dan sehat selalu yaa sayangg, kitaa wujudkan wishlist kitaa yang belum terlaksana, aku akann mengusahakan apapun buat kitaa dan untuk kebahagiaan kitaa.
+
+oiyaa sayangg aku mau bilangg kalo akuu bener benerr kecintaan samaa kamuu, aku bener bener berharap kitaa bisaa sama sama teruss selamanyaa, kamu mauu jugaa gaa sayangg?
+
+maapinn jugaa kalo aku banyak ngelakuin salah, atau bikin kamu marah marah terus sampe gaa mood yaa sayangg, aku janjii buatt be better lagii kedepannya 
+
+keknya ini udah agak kepanjangan yaa wkwkw, sekali lagii selamatt ulangg tahunn yaa sayangg, terimaa kasihh karena sudaa adaa di dunia ini, dan jadii part paling membahagiakan buat aku dan semua orang yang kenal kamu, kalo ada apa apa kamu jangan ragu buat bilang ke akuu yaa, aku pasti dengerin kokk dan akan selalu jadi orang pertama yang akan selalu adaa buat kamu, walaupun aku jauh aku akan selalu berdoa buat kamu.
+
+bawaa akuu dan inget aku terus di bagian hidup dan perjalanan kamuu yaa sayangg, wopyuu selamanyaa sayangkuu ♥️♥️♥️
+
+sehat sehatt sayangkuu, my beautiful girl, my princess tercantikkk sealam semestaaa rayaa ciledug universe 💕`;
+
+let i = 0;
+
+function typingEffect() {
+  const el = document.getElementById("typing");
+  const container = 
+  document.getElementById("typing-container");
+
+  if (i < text.length) {
+    el.innerHTML += text.charAt(i);
+
+    let delay = 40;
+
+    // 🔥 efek dramatis
+    if (text[i] === ".") delay = 400;
+    else if (text[i] === ",") delay = 250;
+    else if (text[i] === "\n") delay = 150;
+    else if (text[i] === "❤️" || text[i] === "💕" || text[i] === "♥️") delay = 500;
+
+    i++;
+
+    // 📜 auto scroll biar naik terus
+    container.scrollTo({
+      top: container.scrollHeight,
+      behavior: "smooth"
+    });
+
+    setTimeout(typingEffect, delay);
+  }
+}
+
+/* LOVE FALL */
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (Math.random()*3+2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }, 300);
+}
+let myAudio = new Audio()
+    var isPlayed = true
+
+    function mainkan() {
+      myAudio.src = 'musik/wave-to-earth.mp3';
+      myAudio.autoplay = true;
+      myAudio.loop = true;
+      myAudio.play();
+    }
+    document.querySelector("body").addEventListener('click', function() {
+      if (isPlayed) {
+        mainkan()
+        isPlayed = false
+      }
+    })
+</script>
+
+</body>
+</html>
